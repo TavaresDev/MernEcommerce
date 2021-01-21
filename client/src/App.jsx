@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import Home from './pages/Home'
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
 
       <Container>
         <Row>
-        <h1>here</h1>
+        <Home/>
           
         </Row>
 
