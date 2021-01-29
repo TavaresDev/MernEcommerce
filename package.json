@@ -9,8 +9,8 @@
     "server": "nodemon api/server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "data:import" : "node api/seeder",
-    "data:destroy" : "node api/seeder -d"
+    "data:import": "node api/seeder",
+    "data:destroy": "node api/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -25,8 +25,10 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.11.13"
   },
   "devDependencies": {
