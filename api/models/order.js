@@ -1,5 +1,5 @@
 // import the mongose library
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 //model - Order
 

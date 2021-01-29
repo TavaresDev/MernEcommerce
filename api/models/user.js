@@ -10,31 +10,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    dropDups: true,
-    validate: [
-      {
-        // value will be the email the user
-        // is attempting to store
-        validator: async function (value) {
-          const emailCount = await this.model('User')
-            .countDocuments({ email: value });
-          return emailCount === 0;
-        },
-        message: props => `Please try a different username/password combination.`
-      },
-      {
-        validator: function (value) {
-          return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value.toLowerCase());
-        },
-        message: props => `Please ensure your email address is in the correct format. The email you entered was ${props.value}`
-      },
-      {
-        validator: function (value) {
-          return this.emailConfirmation === value;
-        },
-        message: props => `Your email and email confirmation must match.`
-      }
-    ]
   },
   password: {
     type: String,
