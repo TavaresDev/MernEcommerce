@@ -4,12 +4,10 @@ import {
     PRODUCT_LIST_SUCCESS,
     PRODUCT_LIST_FAIL
   } from '../constants/productConstants'
-  import { logout } from './userActions'
+
 
   
-export const listProducts = (keyword = '', pageNumber = '') => async (
-    dispatch
-  ) => {
+export const listProducts = () => async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST })
   

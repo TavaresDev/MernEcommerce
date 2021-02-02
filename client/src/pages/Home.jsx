@@ -1,35 +1,41 @@
-import React, {useState, useEffect} from 'react'
-import { Col, Row } from 'react-bootstrap'
-// import products from '../products.js'/
-import Product from '../components/Product'
-import axios from 'axios'
-
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Row } from "react-bootstrap";
+import Product from "../components/Product";
+import { listProducts } from "../actions/productActions";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 
 const Home = () => {
-    const [products, setProducts] = useState([])
-    // just diferent sintax from .get .then
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const {data} = await axios.get('/api/products')
-            setProducts(data)
+	const dispatch = useDispatch();
 
-        }
-        fetchProducts()
-    }, [])
+	//state from store.js (reducer)
+	const productList = useSelector((state) => state.productList);
+	const { loading, products, error } = productList;
+	console.log(products);
 
-    return (
-        <>
-        <h1>Latest products</h1>
-            <Row>
-                {products.map((product) => (
-                    <Col key={product._id} sm={12} md={6} xl={3} >
-                        <Product product={product}/>
-                    
-                    </Col>
-                ))}
-            </Row>
-        </>
-    )
-}
+	useEffect(() => {
+		dispatch(listProducts());
+	}, [dispatch]);
 
-export default Home
+	return (
+		<>
+			<h1>Latest products</h1>
+			{loading ? (
+				<Loader/>
+			) : error ? (
+				<Message variant='danger'>{error}</Message>
+			) : (
+				<Row>
+					{products.map((product) => (
+						<Col key={product._id} sm={12} md={6} xl={3}>
+							<Product product={product} />
+						</Col>
+					))}
+				</Row>
+			)}
+		</>
+	);
+};
+
+export default Home;
