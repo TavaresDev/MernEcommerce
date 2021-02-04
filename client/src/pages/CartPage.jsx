@@ -9,6 +9,8 @@ import Loader from "../components/Loader"
 const CartPage = ({match, location, history}) => {
     const productId = match.params.id
 
+
+    
     // get the qty from the params
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
