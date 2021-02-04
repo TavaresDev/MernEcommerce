@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap"
-import { addToCart,removeFromCart } from "../actions/cartActions"
+import { addToCart, removeFromCart } from "../actions/cartActions"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
 
@@ -23,12 +23,12 @@ const CartPage = ({ match, location, history }) => {
 	}, [dispatch, productId, qty])
 
 	const removeFromCartHandler = (id) => {
-        console.log(id)
-        dispatch(removeFromCart(id))
-    }
-    const checkoutHandler = () => {
-        history.push('/login?redirect=shipping')
-    }
+		console.log(id)
+		dispatch(removeFromCart(id))
+	}
+	const checkoutHandler = () => {
+		history.push("/login?redirect=shipping")
+	}
 
 	return (
 		<Row>
@@ -49,7 +49,7 @@ const CartPage = ({ match, location, history }) => {
 									<Col md={3}>
 										<Link to={`/product/${item.product}`}> {item.name}</Link>
 									</Col>
-									<Col md={2} > $ {item.price}</Col>
+									<Col md={2}> $ {item.price}</Col>
 									<Col md={2}>
 										<Form.Control
 											as='select'
@@ -91,15 +91,13 @@ const CartPage = ({ match, location, history }) => {
 								Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
 								items{" "}
 							</h2>
-                            <h4 className='text-center'>
-                                 <span className='mr-1'>
-                                 $  
-                                </span>                   
-							
-							{cartItems
-								.reduce((acc, item) => acc + item.qty * item.price, 0)
-								.toFixed(2)}
-                                </h4>
+							<h4 className='text-center'>
+								<span className='mr-1'>$</span>
+
+								{cartItems
+									.reduce((acc, item) => acc + item.qty * item.price, 0)
+									.toFixed(2)}
+							</h4>
 						</ListGroup.Item>
 						<ListGroup.Item>
 							<Button
@@ -108,7 +106,8 @@ const CartPage = ({ match, location, history }) => {
 								disabled={cartItems.length === 0}
 								onClick={checkoutHandler}
 							>
-                                Proceed to Check out </Button>
+								Proceed to Check out{" "}
+							</Button>
 						</ListGroup.Item>
 					</ListGroup>
 				</Card>
