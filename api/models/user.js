@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcryptjs'
 // const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -23,6 +24,10 @@ const UserSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
+
+UserSchema.methods.matchPassword = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password)
+}
 
 // UserSchema.virtual('emailConfirmation')
 // .get(function () {
