@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage'
+import LoginPage from './pages/LoginPage'
 import CartPage from './pages/CartPage'
 
 
@@ -16,6 +17,7 @@ const App = () => {
       <main className='py-3'>
         <Container>
          <Route path='/' component={Home} exact/>
+         <Route path='/login' component={LoginPage} exact/>
          <Route path='/product/:id' component={ProductPage} />
          <Route path='/cart/:id?' component={CartPage} />
             
