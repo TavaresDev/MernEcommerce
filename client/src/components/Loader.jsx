@@ -1,7 +1,7 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 
-const Messege = () => {
+const Loader = () => {
 	return (
 		<div>
 			<Spinner
@@ -21,4 +21,4 @@ const Messege = () => {
 	);
 };
 
-export default Messege;
+export default Loader;

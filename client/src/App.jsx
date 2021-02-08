@@ -12,6 +12,7 @@ import ProfilePage from './pages/profilePage'
 import ShippingPage from './pages/ShippingPage'
 import PaymentPage from './pages/PaymentPage'
 import PlaceOrderPage from './pages/PlaceOrderPage'
+import OrderPage from './pages/OrderPage'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
          <Route path='/' component={Home} exact/>
          <Route path='/login' component={LoginPage}/>
          <Route path='/shipping' component={ShippingPage}/>
+         <Route path='/order/:id' component={OrderPage}/>
          <Route path='/payment' component={PaymentPage}/>
          <Route path='/placeorder' component={PlaceOrderPage}/>
          <Route path='/register' component={RegisterPage}/>
