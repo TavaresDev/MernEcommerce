@@ -1,13 +1,16 @@
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+
 import Message from "../components/Message"
 import CheckoutSteps from "../components/CheckoutSteps"
 import { Link } from "react-router-dom"
+import { createOrder } from "../actions/orderActions"
 
-const PlaceOrderPage = () => {
+const PlaceOrderPage = ({history}) => {
+	const dispatch = useDispatch()
 	const cart = useSelector((state) => state.cart)
-
+	
     //calculate prices
     const addDecimals = num => {
         return (Math.round(num * 100) / 100).toFixed(2)
@@ -16,11 +19,31 @@ const PlaceOrderPage = () => {
     cart.shippingPrice = addDecimals(cart.itensPrice > 100 ? 0 : 100)
     cart.taxPrice = addDecimals(Number((0.13 * cart.itemsPrice).toFixed(2)))
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
+	
+	const orderCreate = useSelector(state => state.orderCreate)
+	const {order, success, error} = orderCreate
 
+
+	useEffect(() => {
+		if(success){
+			history.push(`/order/${order._id}`)
+		}
+	}, [history, success])
 
     const placeOrderHandler = (e) => {
-
+		dispatch
+			(createOrder({
+				orderItems: cart.cartItems,
+				shippingAddress: cart.shippingAddress,
+				paymentMethod: cart.paymentMethod,
+				itemsPrice: cart.itemsPrice,
+				shippingPrice: cart.shippingPrice,
+				taxPrice: cart.taxPrice,
+				totalPrice: cart.totalPrice
+		}))
     }
+
+
 	return (
 		<div>
 			<CheckoutSteps step1 step2 step3 step4 />
@@ -107,7 +130,7 @@ const PlaceOrderPage = () => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                {/* {error && <Message variant='danger'>{error}</Message>} */}
+                {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
