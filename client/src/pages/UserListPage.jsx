@@ -1,22 +1,38 @@
 import React, { useEffect } from 'react'
-import { Button, Form , Row, Col, Table } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import {listUsers} from '../actions/userActions'
+import {deleteUser, listUsers} from '../actions/userActions'
 
-const UserListPage = () => {
+const UserListPage = ({history}) => {
 
     const dispatch = useDispatch()
+
     const userList = useSelector(state => state.userList)
     const {loading, error, users} = userList
 
-    useEffect(() => {
-        dispatch(listUsers())
-    }, [dispatch])
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
+    
+    const userDelete = useSelector(state => state.userDelete)
+    const {successDelete} = userDelete
 
-    const deleteHandler = () => {
+    useEffect(() => {
+        if(userInfo && userInfo.isAdmin) {
+            dispatch(listUsers())
+
+        } else {
+            history.pushState('/login')
+        }
+    }, [dispatch, history, successDelete, userInfo])
+
+    const deleteHandler = (id) => {
+        if(window.confirm('Are you sure')){
+
+            dispatch(deleteUser(id))
+        }
 
     }
 
