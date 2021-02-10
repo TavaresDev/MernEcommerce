@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router , Route} from 'react-router-dom'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Home from './pages/Home'
@@ -16,6 +16,7 @@ import OrderPage from './pages/OrderPage'
 import UserListPage from './pages/UserListPage'
 import UserEditPage from './pages/UserEditPage'
 import ProductListPage from './pages/ProductListPage'
+import ProductEditPage from './pages/ProductEditPage'
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
          <Route path='/admin/userlist' component={UserListPage}/>
          <Route path='/admin/productlist' component={ProductListPage}/>
          <Route path='/admin/user/:id/edit' component={UserEditPage}/>
+         <Route path='/admin/product/:id/edit' component={ProductEditPage}/>
          <Route path='/product/:id' component={ProductPage} />
          <Route path='/cart/:id?' component={CartPage} />
             

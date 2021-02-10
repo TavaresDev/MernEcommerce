@@ -87,10 +87,7 @@ export const createProduct = () => async (dispatch, getState) => {
 	  dispatch({
 		type: PRODUCT_CREATE_REQUEST,
 	  })
-  
-	  const {
-		userLogin: { userInfo },
-	  } = getState()
+	  const {userLogin: { userInfo }} = getState()
   
 	  const config = {
 		headers: {
@@ -135,11 +132,7 @@ export const createProduct = () => async (dispatch, getState) => {
 		},
 	  }
   
-	  const { data } = await axios.put(
-		`/api/products/${product._id}`,
-		product,
-		config
-	  )
+	  const { data } = await axios.put(`/api/products/${product._id}`,product, config)
   
 	  dispatch({
 		type: PRODUCT_UPDATE_SUCCESS,
