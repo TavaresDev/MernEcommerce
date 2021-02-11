@@ -10,6 +10,7 @@ import {
 	createProductReview,
 } from "../actions/productActions"
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants"
+import Meta from "../components/Meta"
 
 const ProductPage = ({ history, match }) => {
 	const dispatch = useDispatch()
@@ -62,6 +63,7 @@ const ProductPage = ({ history, match }) => {
 
 	return (
 		<>
+			
 			<Link className='btn btn-dark my-3' to='/'>
 				{" "}
 				go back
@@ -72,6 +74,7 @@ const ProductPage = ({ history, match }) => {
 				<Message variant='danger'>{error}</Message>
 			) : (
 				<>
+					<Meta title={product.name}/>
 					<Row>
 						<Col md={6}>
 							<Image src={product.image} alt={product.name} fluid />
