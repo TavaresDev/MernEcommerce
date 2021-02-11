@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Col, Row } from "react-bootstrap";
-import Product from "../components/Product";
-import { listProducts } from "../actions/productActions";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Col, Row } from "react-bootstrap"
+import Product from "../components/Product"
+import { listProducts } from "../actions/productActions"
+import Message from "../components/Message"
+import Loader from "../components/Loader"
 
-const Home = () => {
-	const dispatch = useDispatch();
+const Home = ({ match }) => {
+	const dispatch = useDispatch()
+	const keyword = match.params.keyword
 
 	//state from store.js (reducer)
-	const productList = useSelector((state) => state.productList);
-	const { loading, products, error } = productList;
-	console.log(products);
+	const productList = useSelector((state) => state.productList)
+	const { loading, products, error } = productList
+	console.log(products)
 
 	useEffect(() => {
-		dispatch(listProducts());
-	}, [dispatch]);
+		dispatch(listProducts(keyword))
+	}, [dispatch, keyword])
 
 	return (
 		<>
 			<h1>Latest products</h1>
 			{loading ? (
-				<Loader/>
+				<Loader />
 			) : error ? (
 				<Message variant='danger'>{error}</Message>
 			) : (
@@ -35,7 +36,7 @@ const Home = () => {
 				</Row>
 			)}
 		</>
-	);
-};
+	)
+}
 
-export default Home;
+export default Home
