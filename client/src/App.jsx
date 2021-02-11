@@ -3,7 +3,7 @@ import {BrowserRouter as Router , Route} from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Home from './pages/Home'
+import HomePage from './pages/HomePage'
 import ProductPage from './pages/ProductPage'
 import LoginPage from './pages/LoginPage'
 import CartPage from './pages/CartPage'
@@ -27,8 +27,8 @@ const App = () => {
     <Header/>
       <main className='py-3'>
         <Container>
-         <Route path='/' component={Home} exact/>
-         <Route path='/search/:keyword' component={Home} />
+         <Route path='/' component={HomePage} exact/>
+         <Route path='/search/:keyword' component={HomePage} />
          <Route path='/login' component={LoginPage}/>
          <Route path='/shipping' component={ShippingPage}/>
          <Route path='/order/:id' component={OrderPage}/>
