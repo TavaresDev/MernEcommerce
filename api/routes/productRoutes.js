@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import { getProductById, getProducts, deleteProduct, createProduct, updateProduct, createProductReview } from '../controllers/productControllers.js'
+import { getProductById, getProducts, deleteProduct, createProduct, updateProduct, createProductReview, getTopProducts } from '../controllers/productControllers.js'
 import { admin, protect } from '../middleware/authMiddleware.js'
 
 // same as
@@ -8,6 +8,8 @@ import { admin, protect } from '../middleware/authMiddleware.js'
 router.route('/')
     .get(getProducts)
     .post(protect, admin, createProduct)
+    
+router.get('/top', getTopProducts)
 router.route('/:id')
     .get(getProductById)
     .delete(protect, admin, deleteProduct)
