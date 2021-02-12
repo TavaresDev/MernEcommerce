@@ -114,15 +114,19 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
       })
 
     } catch (error) {
-      dispatch({
-        type: ORDER_DELIVER_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      })
+      const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      // dispatch(logout())
     }
+    dispatch({
+      type: ORDER_DELIVER_FAIL,
+      payload: message,
+    })
   }
+}
   
 export const listMyOrders = () => async (dispatch, getState) => {
     try {

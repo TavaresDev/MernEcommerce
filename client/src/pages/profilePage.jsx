@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react"
 import { Button, Form, Row, Col, Table } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
-// import { getUserDetails } from "../actions/userActions"
 import { getUserDetails, updateUserProfile } from "../actions/userActions"
 import { listMyOrders } from "../actions/orderActions"
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 
 const ProfilePage = ({ location, history }) => {
 	const [name, setName] = useState("")
@@ -32,17 +31,18 @@ const ProfilePage = ({ location, history }) => {
 
 	useEffect(() => {
 		if (!userInfo) {
-			history.push(`/login`)
+		  history.push('/login')
 		} else {
-			if (!user.name) {
-				dispatch(getUserDetails("profile"))
-				dispatch(listMyOrders())
-			} else {
-				setName(user.name)
-				setEmail(user.email)
-			}
+		  if (!user || !user.name || success) {
+			dispatch({ type: USER_UPDATE_PROFILE_RESET })
+			dispatch(getUserDetails('profile'))
+			dispatch(listMyOrders())
+		  } else {
+			setName(user.name)
+			setEmail(user.email)
+		  }
 		}
-	}, [dispatch, history, userInfo, user])
+	  }, [dispatch, history, userInfo, user, success])
 
 	const submitHandler = (e) => {
 		e.preventDefault()

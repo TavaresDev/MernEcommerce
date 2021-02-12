@@ -96,7 +96,7 @@ const OrderPage = ({match, history}) => {
 								{order.shippingAddress.country},
 							</p>
                             {order.isDelivered ? 
-                                <Message variant='success'> Delivered On {order.DeliveredAt}</Message> :
+                                <Message variant='success'> Out for Delivered On {order.deliveredAt.substring(0, 10)}</Message> :
                                 (
                                     <Message variant='danger'> Not Delivered</Message> 
                                 )}
@@ -108,7 +108,7 @@ const OrderPage = ({match, history}) => {
 								{order.paymentMethod}
 							</p>
                             {order.isPaid ? 
-                                <Message variant='success'> Paid On {order.paidAt}</Message> :
+                                <Message variant='success'> Paid On {order.paidAt.substring(0,10)}</Message> :
                                 (
                                     <Message variant='danger'> Not Paid</Message> 
                                 )}

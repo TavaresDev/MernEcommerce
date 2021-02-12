@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, Form, Row, Col } from "react-bootstrap"
+import { Button, Form, Col } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { savePaymentMethod } from "../actions/cartActions"
 import CheckoutSteps from "../components/CheckoutSteps"
@@ -9,8 +9,9 @@ const PaymentPage = ({ history }) => {
 	const cart = useSelector((state) => state.cart)
 	const { shippingAddress } = cart
 
-	if (!shippingAddress) {
-		history.push("/shipping")
+	if (!shippingAddress.address) {
+		history.push('/shipping')
+
 	}
 
 	const [paymentMethod, setPaymentMethod] = useState("paypal")

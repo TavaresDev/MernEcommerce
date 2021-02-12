@@ -125,6 +125,12 @@ export const login = (email, password) => async (dispatch) => {
         type: USER_UPDATE_PROFILE_SUCCESS,
         payload: data,
       })
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      })
+
+      localStorage.setItem('userInfo', JSON.stringify(data) )
 
     } catch (error) {
       dispatch({
