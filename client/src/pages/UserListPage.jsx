@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import TableContainer from "../components/TableContainer"
 import {deleteUser, listUsers} from '../actions/userActions'
 
 const UserListPage = ({history}) => {
@@ -44,7 +45,7 @@ const UserListPage = ({history}) => {
         ) : error ? (
           <Message variant='danger'>{error}</Message>
         ) : (
-          <Table striped bordered hover responsive className='table-sm'>
+          <TableContainer>
             <thead>
               <tr>
                 <th>ID</th>
@@ -57,7 +58,8 @@ const UserListPage = ({history}) => {
             <tbody>
               {users.map((user) => (
                 <tr key={user._id}>
-                  <td>{user._id}</td>
+                  
+                  <td>{user._id.slice(0, 10) + '...'}</td>
                   <td>{user.name}</td>
                   <td>
                     <a href={`mailto:${user.email}`}>{user.email}</a>
@@ -86,7 +88,7 @@ const UserListPage = ({history}) => {
                 </tr>
               ))}
             </tbody>
-          </Table>
+          </TableContainer>
         )}
       </>
     )

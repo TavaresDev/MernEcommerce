@@ -62,6 +62,14 @@ const UserEditPage= ({match, history}) => {
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading ?  <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
                     <Form onSubmit={submitHandler}>
+                    <Form.Group controlId='id' >
+                        <Form.Label>User ID</Form.Label>
+                        <Form.Control
+                            type='id'
+                            value = {userId}   
+                            disabled                 
+                            ></Form.Control>
+                    </Form.Group>
                     <Form.Group controlId='name' >
                         <Form.Label>Name</Form.Label>
                         <Form.Control
