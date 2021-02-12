@@ -8,6 +8,7 @@ import FormContainer from "../components/FormContainer"
 const ShippingPage = ({ history }) => {
     const cart = useSelector(state => state.cart)
     const {shippingAddress} = cart
+	console.log(shippingAddress)
 
 	const [address, setAddress] = useState(shippingAddress.address)
 	const [city, setCity] = useState(shippingAddress.city)
