@@ -22,7 +22,7 @@ const Header = () => {
 			<Navbar bg='light' expand='lg'>
 				<Container>
 					<LinkContainer to='/'>
-						<Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
+						<Navbar.Brand href='#home'>eCommerce</Navbar.Brand>
 					</LinkContainer>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 
