@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Button, Form } from 'react-bootstrap'
-import {useHistory, useLocation, useMatch} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 
 const SearchBox = () => {
@@ -26,8 +26,9 @@ const SearchBox = () => {
                 className='mr-sm-2 ml-sm-5'>
 
             </Form.Control>
-            <Button type='submit' variant='outline-success' className='py-2'>
-                Search
+            <Button type='submit' variant='outline-success' className=''>
+                {/* Search */}
+                <i className='fas fa-search'></i>
             </Button>
             
         </Form >
