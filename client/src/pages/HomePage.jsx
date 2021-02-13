@@ -9,6 +9,7 @@ import Loader from "../components/Loader"
 import Paginate from "../components/Paginate"
 import ProductCarousel from "../components/ProductCarousel"
 import Meta from "../components/Meta"
+import { useTranslation } from 'react-i18next';
 
 const Home = ({ match }) => {
 	const dispatch = useDispatch()
@@ -25,12 +26,15 @@ const Home = ({ match }) => {
 		dispatch(listProducts(keyword, pageNumber))
 	}, [dispatch, keyword, pageNumber])
 
+	const {t, i18n} = useTranslation()
+
 	return (
 		<>
 			<Meta/>
 			{!keyword ? <ProductCarousel/> : <Link to='/' classname='btn btn-light'>Go back</Link>}
 			
-			<h1>Latest products</h1>
+			<h1>{t('Latest products')}</h1>
+			{/* <h1>{t('Welcome to React')}</h1> */}
 			{loading ? (
 				<Loader />
 			) : error ? (
