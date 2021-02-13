@@ -25,7 +25,7 @@ const UserListPage = ({history}) => {
             dispatch(listUsers())
 
         } else {
-            history.pushState('/login')
+            history.push('/login')
         }
     }, [dispatch, history, successDelete, userInfo])
 
