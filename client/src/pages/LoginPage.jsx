@@ -6,8 +6,11 @@ import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import Loader from '../components/Loader'
 import {login} from '../actions/userActions'
+import { useTranslation } from 'react-i18next'
+
 
 const LoginPage = ({location, history}) => {
+    const {t, i18n} = useTranslation()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -33,35 +36,35 @@ const LoginPage = ({location, history}) => {
 
     return (
         <FormContainer>
-            <h1>Sign in</h1>
+            <h1>{t('signInTitle')}</h1>
             {error && <Message variant='danger'>{error}</Message>}
             {loading &&  <Loader/>}
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email' >
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>{t('emailAddress')}</Form.Label>
                     <Form.Control
                         type='email'
-                        placeholder='Enter Email'
+                        placeholder={t('emailAddress')}
                         value = {email}
                         onChange = {(e) => setEmail(e.target.value)}                        
                         ></Form.Control>
                 </Form.Group>
                 <Form.Group controlId='password' >
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>{t('password')}</Form.Label>
                     <Form.Control
                         type='password'
-                        placeholder='Enter Password'
+                        placeholder={t('password')}
                         value = {password}
                         onChange = {(e) => setPassword(e.target.value)}                        
                         ></Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>Sign In</Button>
+                <Button type='submit' variant='primary'>{t('signIn')}</Button>
             </Form>
             <Row>
                 <Col>
-                    New Customer? {' '}
-                     <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> Register</Link>
+                    {t('newCustomer')}? {' '}
+                     <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}> {t('register')}</Link>
                 </Col>
             </Row>
         </FormContainer>

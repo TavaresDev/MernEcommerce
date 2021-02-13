@@ -9,7 +9,7 @@ import Loader from "../components/Loader"
 import Paginate from "../components/Paginate"
 import ProductCarousel from "../components/ProductCarousel"
 import Meta from "../components/Meta"
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
 const Home = ({ match }) => {
 	const dispatch = useDispatch()

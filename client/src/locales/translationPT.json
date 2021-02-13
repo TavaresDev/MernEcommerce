@@ -1,9 +1,10 @@
 {
     "Latest products": "Produtos Novos",
-    "Sign in ": "Entrar",
-    "Email address": "endereco de email",
-    "Password": "Senha",
-    "New Customer": "Novo Usuario",
-    "Register": "Criar Conta"
+    "signInTitle": "Fazer login",
+    "signIn": "Entrar",
+    "emailAddress": "Endereco de email",
+    "password": "Senha",
+    "newCustomer": "Novo Usuario",
+    "register": "Criar Conta"
 
 }
